@@ -1,0 +1,2 @@
+# freeman-exercise-187
+This program begins by either asking whether or not the user would like to login to their account, register a new account, or quit. If matching login information is found for login, it continues by asking the user to import a file. After it is imported, the user can input what ID they want searched, and it will load the ID, name and cost for the user, as well as keep track of the number left in stock. When the user is finished with the program, it will display a list of all the things bought by the user.
