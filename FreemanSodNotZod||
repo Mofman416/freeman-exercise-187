@@ -1,0 +1,59 @@
+// AUTHOR: Michael Freeman
+// COURSE: CPT 187
+// PURPOSE: Takes the order ID, name, price, quantity and order cost and writes them down.
+// CREATEDATE: 11/22/2020
+
+package edu.cpt187.freeman.exercise6;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class WriteOrder 
+{ // CONTAINS non-constants, constructor and methods
+	// Non-constants
+	private boolean fileFoundFlag = false;
+	private String masterFileName = "";
+	private int recordCount = 0;
+	
+	// The WriteOrder class constructor
+	public WriteOrder(String borrowedFileName)
+	{
+		masterFileName = borrowedFileName;
+	} // END OF class constructor
+	
+	public void setWriteOrder(int borrowedItemID, String borrowedItemName, double borrowedItemPrice,
+			int borrowedQuantity, double borrowedOrderCost)
+	{ // CONTAINS set write order
+			try
+			{ // CONTAINS try
+				PrintWriter filePW = new PrintWriter(new FileWriter(masterFileName, true));
+				filePW.printf("%n%d\t%s\t%f\t%d\t%f", borrowedItemID, borrowedItemName,
+						borrowedItemPrice, borrowedQuantity, borrowedOrderCost);
+				fileFoundFlag = true;
+				recordCount++;
+				filePW.close();
+				
+			} // CONTAINS try
+			
+			catch (IOException ex)
+			{ // END OF catch
+				fileFoundFlag = false;
+			} // END OF catch
+	} // END OF setWriteOrder
+	
+	public boolean getFileFoundFlag()
+	{ // CONTAINS get file found flag
+		return fileFoundFlag;
+	} // END OF getFileFoundFlag
+	
+	public String getFileName()
+	{ // CONTAINS get file name
+		return masterFileName;
+	} // END OF getFileName
+	
+	public int getRecordCount()
+	{ // CONTAINS get record count
+		return recordCount;
+	} // END OF get record count
+} // END OF WriteOrder
