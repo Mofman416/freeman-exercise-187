@@ -1,0 +1,150 @@
+// AUTHOR: Michael Freeman
+// COURSE: CPT 187
+// PURPOSE: Contains the ID, name, price, discount name and rate, and how many of something that a person wants
+// CREATEDATE: 11/22/2020
+
+package edu.cpt187.freeman.exercise6;
+
+public class Order 
+{ // CONTAINS constant, non-constants, constructor and methods
+	// Constants
+	private final double TAX_RATE = 0.075;
+	
+	// Non-constants
+	private int discountType = 0;
+	private int itemID = 0;
+	private String itemName = "";
+	private double itemPrice = 0.0;
+	private String discountName = "";
+	private double discountRate = 0.0;
+	private int howMany = 0;
+	private int lastItemSelectedIndex = 0;
+	private String prizeName = "";
+	
+	// The Order class constructor
+	public Order ()
+	{
+	} // END OF class constructor
+	
+	// Setters
+	public void setLastItemSelectedIndex(int borrowedSearchIndex)
+	{ // CONTAINS last item selected index assignment
+		lastItemSelectedIndex = borrowedSearchIndex;
+	} // END OF setLastItemSelectedIndex
+	
+	public void setItemID(int[] borrowedItemIDs)
+	{ // CONTAINS set item ids
+		itemID = borrowedItemIDs[lastItemSelectedIndex];
+	} // END OF setItemID
+	
+	public void setItemName(String[] borrowedItemNames)
+	{ // CONTAINS item name setting
+		itemName = borrowedItemNames[lastItemSelectedIndex];
+	} // END OF setItemName
+	
+	public void setItemPrice(double[] borrowedItemPrices)
+	{ // CONTAINS set item price
+		itemPrice = borrowedItemPrices[lastItemSelectedIndex];
+	} // END OF setItemPrice
+	
+	public void setHowMany(String borrowedHowMany)
+	{ // CONTAINS set how many
+		howMany = Integer.parseInt(borrowedHowMany);
+	} // END OF setHowMany
+	
+	public void setDiscountType(char borrowedMenuSelection)
+	{ // CONTAINS set discount type
+		discountType = borrowedMenuSelection - 'A';
+	} // END OF setDiscountType
+	
+	public void setDiscountName(String[] borrowedDiscountNames)
+	{ // CONTAINS discount name setting
+		discountName = borrowedDiscountNames[discountType];
+	} // END OF setDiscountName
+	
+	public void setDiscountRate(double[] borrowedDiscountRates)
+	{ // CONTAINS set discount rate
+		discountRate = borrowedDiscountRates[discountType];
+	} // END OF setDiscountRate
+	
+	public void setPrizeName(String[] borrowedPrizeNames, int borrowedPrizeIndex)
+	{ // CONTAINS set prize name
+		prizeName = borrowedPrizeNames[borrowedPrizeIndex];
+	} // END OF setPrizeName
+	
+	public void setDecreaseInStock(Inventory borrowedInventoryObject)
+	{ // CONTAINS decreasing stock method
+		borrowedInventoryObject.setReduceStock(howMany);
+	} // END OF setDecreaseInStock
+	
+	// Getters
+	public int getInStockCount(int[] borrowedInStockCounts)
+	{ // CONTAINS gets stock count
+		return borrowedInStockCounts[lastItemSelectedIndex];
+	} // END OF getInStockCount
+	
+	public int getItemID()
+	{ // CONTAINS get item ID
+		return itemID;
+	} // END OF getItemID
+	
+	public String getItemName()
+	{ // CONTAINS get item name
+		return itemName;
+	} // END OF getItemName
+	
+	public double getItemPrice()
+	{ // CONTAINS get item price
+		return itemPrice;
+	} // END OF getItemPrice
+	
+	public int getHowMany()
+	{ // CONTAINS get how many
+		return howMany;
+	} // END OF getHowMany
+	
+	public String getDiscountName()
+	{ // CONTAINS get discount name
+		return discountName;
+	} // END OF getDiscountName
+	
+	public double getDiscountRate()
+	{ // CONTAINS get discount rate
+		return discountRate;
+	} // END OF getDiscountRate
+	
+	public double getDiscountAmt()
+	{ // CONTAINS get discount amount
+		return itemPrice * getDiscountRate();
+	} // END OF getDiscountAmt
+	
+	public double getDiscountPrice()
+	{ // CONTAINS get discount price
+		return itemPrice - getDiscountAmt();
+	} // END OF getDiscountPrice
+	
+	public String getPrizeName()
+	{ // CONTAINS get prize name
+		return prizeName;
+	} // END OF getPrizeName
+	
+	public double getSubTotal()
+	{ // CONTAINS get sub total
+		return getDiscountPrice() * howMany;
+	} // END OF getSubTotal
+	
+	public double getTaxRate()
+	{ // CONTAINS get tax rate
+		return TAX_RATE;
+	} // END OF getTaxRate
+	
+	public double getTaxAmt()
+	{ // CONTAINS get tax amount
+		return getSubTotal() * TAX_RATE;
+	} // END OF getTaxAmt
+	
+	public double getTotalCost()
+	{ // CONTAINS get total cost
+		return getSubTotal() + getTaxAmt();
+	} // END OF getTotalCost
+} // END OF Order
